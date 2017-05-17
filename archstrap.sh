@@ -24,7 +24,7 @@ PACKAGES+=' base base-devel grub os-prober'
 # Common System
 PACKAGES+=' xf86-input-synaptics alsa-utils xorg-server bluez bluez-utils samba ufw cups gutenprint networkmanager networkmanager-dispatcher-ntpd networkmanager-openvpn'
 # Pacman
-PACKAGES+=' devtools pacgraph srcpac'
+PACKAGES+=' devtools'
 # KDE Plasma 5
 PACKAGES+=' plasma-meta kde-applications-meta'
 # Cool Applications
