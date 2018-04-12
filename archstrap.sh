@@ -3,7 +3,7 @@
 ## MAIN INSTALL SETTINGS
 
 # MACHINE INFO
-ROOT_PARTITION='sdz9' GRUB_DRIVE=${ROOT_PARTITION:0:3} GRUB_TIMEOUT='3'
+ROOT_PARTITION='sdz9' EFI_SYSTEM_PARTITION='sdz9'
 
 HOSTNAME='archbox' ROOT_PASSWORD='root'
 
@@ -42,6 +42,10 @@ SERVICES="sddm.service NetworkManager.service NetworkManager-dispatcher.service 
 # Format and mount root partition
 mkfs.ext4 /dev/$ROOT_PARTITION
 mount /dev/$ROOT_PARTITION /mnt
+
+# Mount ESP partition
+mkdir /mnt/boot
+mount /dev/$EFI_SYSTEM_PARTITION /mnt/boot
 
 # Download, Rank and sort the mirrorlist
 curl https://www.archlinux.org/mirrorlist/?country=$COUNTRY > mirrorlist
@@ -82,10 +86,10 @@ sed -i "s/127\.0\.0\.1\tlocalhost\.localdomain\tlocalhost/127\.0\.0\.1\tlocalhos
 # Set root password
 echo root:$ROOT_PASSWORD | chpasswd
 
-# Install and configure GRUB bootloader
-grub-install --recheck /dev/$GRUB_DRIVE
-sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT="$GRUB_TIMEOUT"/' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+# Install and configure systemd-boot
+bootctl --path=/boot install
+cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf
+bootctl --path=/boot update
 
 # Add a new user with a password and a full name
 useradd -m -G wheel -s /bin/bash $USER_NAME
