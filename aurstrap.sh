@@ -7,7 +7,7 @@
 ## LIST OF AUR PACKAGES TO INSTALL
 
 # Pacman
-AUR+=' pkgbrowser octopi dotpac lostfiles'
+AUR+=' pkgbrowser octopi dotpac lostfiles systemd-boot-pacman-hook'
 # Cool Applications
 AUR+=' backintime keeweb-desktop zotero'
 # etc
