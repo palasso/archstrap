@@ -15,8 +15,7 @@ AUR+=' backintime keeweb-desktop zotero'
 
 ## SHELL SCRIPT
 
-# Install an AUR helper (pacaur) to install the AUR packages
-gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
-bash <(curl aur.sh) -csi --noconfirm cower pacaur
-rm -r cower pacaur
-pacaur --clean --needed --noconfirm --noedit -S $AUR
+# Install an AUR helper (yay) to install the AUR packages
+bash <(curl aur.sh) -csi --noconfirm yay
+rm -r yay
+yay -S $AUR
