@@ -28,9 +28,9 @@ Boot to the live image of archlinux. Check networking, partitioning and check **
 
 Check **again** how you configured `archstrap.sh`
 
-Run `bash archstrap.sh` and pray you picked the **correct partition**.
+Run `bash archstrap.sh` and pray you picked the **correct partitions**.
 
-After the process finishes have a quick look in case there were any errors and if the process was successful reboot to the installed system.
+After the process finishes have a quick look in case there were any errors and if the process was successful **configure systemd-boot (check section below)**. Afterwards you can reboot to the installed system.
 
 Run `bash aurstrap.sh` and since the rest of the system is in a useable state you can use what you got so far.
 
@@ -40,6 +40,27 @@ This also varies based on the number of PKGBUILDs. Keep in mind that many PKGBUI
 Check to see if any errors occured.
 
 Enjoy!
+
+### systemd-boot
+You will have to manually configure 2 files in order for systemd-boot to work.
+It is assumed that the installation procedure has finished successfully and you are running on the arch live image. Find out the UUID of your root partition by doing `lsblk -f` (You may need to mount your root partition in order to show the result).
+
+Edit `/boot/loader/entries/arch.conf` to include the UUID. An example is given below:
+
+    ## This is just an example config file.
+    ## Please edit the paths and kernel parameters according to your system.
+    
+    title   Arch Linux
+    linux   /vmlinuz-linux
+    initrd  /initramfs-linux.img
+    options root=UUID=<the UUID of your root partition> rw
+
+If you are using an Intel CPU include a new line with `initrd  /intel-ucode.img` before the `initrd  /initramfs-linux.img` line.
+
+Edit `/boot/loader/loader.conf` with the default settings you wish. An example is given below:
+
+    timeout 3
+    default arch-*
 
 ## Contributors
 
