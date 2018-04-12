@@ -16,11 +16,11 @@ REAL_NAME='Archlinux User' USER_NAME='user' USER_PASSWORD='password'
 ## LIST OF PACKAGES TO INSTALL
 
 # Intel
-#PACKAGES+=' intel-ucode xf86-video-intel mesa-libgl lib32-mesa-libgl libva-intel-driver lib32-libva-intel-driver'
+#PACKAGES+=' intel-ucode xf86-video-intel mesa lib32-mesa libva-intel-driver lib32-libva-intel-driver vulkan-intel'
 # AMD
-#PACKAGES+=' xf86-video-ati mesa-libgl lib32-mesa-libgl libva-mesa-driver lib32-libva mesa-vdpau lib32-mesa-vdpau'
+#PACKAGES+=' xf86-video-ati mesa lib32-mesa libva-mesa-driver lib32-libva mesa-vdpau lib32-mesa-vdpau'
 # Base System
-PACKAGES+=' base base-devel grub os-prober'
+PACKAGES+=' base base-devel'
 # Common System
 PACKAGES+=' xf86-input-synaptics alsa-utils xorg-server bluez bluez-utils samba ufw cups gutenprint networkmanager networkmanager-dispatcher-ntpd networkmanager-openvpn'
 # Pacman
